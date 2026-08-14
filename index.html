@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&amp;family=Jost:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#0d0f0e; -webkit-tap-highlight-color: transparent; }
+  * { box-sizing: border-box; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: inherit; }
+  @font-face { font-family:'Brittany'; src: url('./BrittanySignature.ttf') format('truetype'); font-display: swap; }
+  @keyframes fr-rise { from { opacity:0; transform: translateY(14px); } to { opacity:1; transform:none; } }
+  @keyframes fr-glow {
+    0%,100% { box-shadow: 0 14px 34px rgba(0,0,0,0.6), 0 0 22px rgba(52,140,66,0.30), inset 0 1px 0 rgba(255,255,255,0.14); }
+    50%     { box-shadow: 0 14px 34px rgba(0,0,0,0.6), 0 0 36px rgba(52,140,66,0.48), inset 0 1px 0 rgba(255,255,255,0.14); }
+  }
+  @keyframes fr-logoglow {
+    0%,100% { filter: drop-shadow(0 0 20px rgba(90,178,105,0.26)) drop-shadow(0 0 56px rgba(52,140,66,0.16)); }
+    50%     { filter: drop-shadow(0 0 26px rgba(110,200,124,0.38)) drop-shadow(0 0 72px rgba(90,178,105,0.22)); }
+  }
+  .fr-logo { animation: fr-logoglow 5s ease-in-out infinite; }
+  @keyframes fr-badgeglow {
+    0%,100% { box-shadow: 0 0 14px rgba(90,178,105,0.16), 0 0 30px rgba(90,178,105,0.08); }
+    50%     { box-shadow: 0 0 20px rgba(110,200,124,0.26), 0 0 44px rgba(90,178,105,0.12); }
+  }
+  .fr-badge { animation: fr-badgeglow 4.4s ease-in-out infinite; transition: transform .25s cubic-bezier(.2,.7,.3,1), border-color .25s ease; }
+  .fr-badge:hover { transform: scale(1.05) !important; border-color: rgba(90,178,105,0.75); }
+  .fr-badge:active { transform: scale(0.95) !important; transition-duration:.09s !important; }
+  .fr-btn { animation: fr-rise .6s cubic-bezier(.2,.7,.3,1) backwards; will-change: transform; }
+  .fr-btn:hover { transform: translateY(-2px) scale(1.03) !important; border-color: rgba(90,178,105,0.6); }
+  .fr-btn:active { transform: scale(0.965) !important; transition-duration:.09s !important; }
+  .fr-main { animation: fr-glow 3.6s ease-in-out infinite; }
+  .fr-main:hover { transform: translateY(-2px) scale(1.03); }
+  .fr-main:active { transform: scale(0.968); transition-duration:.09s; }
+  .fr-icon { transition: transform .28s cubic-bezier(.2,.7,.3,1), border-color .25s ease; }
+  .fr-icon:hover { transform: scale(1.12) !important; border-color: rgba(90,178,105,0.55); }
+  .fr-icon:active { transform: scale(0.9) !important; transition-duration:.09s !important; }
+  .fr-fab { transition: transform .28s cubic-bezier(.2,.7,.3,1), box-shadow .28s ease; }
+  .fr-fab:hover { transform: scale(1.06) !important; }
+  .fr-fab:active { transform: scale(0.93) !important; transition-duration:.09s !important; }
+  @media (prefers-reduced-motion: reduce) {
+    .fr-btn, .fr-main, .fr-logo, .fr-badge { animation: none; }
+    .fr-btn:hover, .fr-btn:active, .fr-main:hover, .fr-main:active, .fr-icon:hover, .fr-icon:active, .fr-fab:hover, .fr-fab:active { transform: none !important; }
+  }
+</style>
+</helmet>
+
+<div style="position:relative;min-height:100vh;width:100%;background:#0d0f0e;font-family:'Jost',system-ui,sans-serif;color:#eaf1ec;overflow:hidden">
+
+  <div style="position:fixed;inset:0;z-index:0;pointer-events:none;filter:blur(60px);background:radial-gradient(120% 75% at 50% 20%, #1e2221 0%, #141716 30%, #0b0d0c 58%, #070807 88%, #060706 100%)"></div>
+  <div style="position:fixed;inset:0;z-index:1;pointer-events:none;filter:blur(110px);background:radial-gradient(58% 34% at 50% 26%, rgba(52,140,66,0.095) 0%, rgba(52,140,66,0.04) 50%, rgba(52,140,66,0) 84%)"></div>
+
+  <main style="position:relative;z-index:2;width:100%;max-width:530px;margin:0 auto;padding:40px 18px 132px;display:flex;flex-direction:column;gap:34px">
+
+    <header style="display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;padding-top:14px">
+      <img class="fr-logo" src="./logo-fotorama-full.png" alt="Fotorama — www.fotorama.cl" style="width:calc(100% + 24px);max-width:none;margin:0 -12px;height:auto;display:block">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <h1 style="margin:0;font-size:26px;font-weight:600;letter-spacing:0.04em;color:#f4f8f4">Fotorama — Daniel H</h1>
+        <p style="margin:0;font-size:14.5px;font-weight:300;letter-spacing:0.02em;color:rgba(234,241,236,0.68)">Fotografía y video en Santiago de Chile</p>
+      </div>
+    </header>
+
+    <sc-if value="{{ showTrustBar }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
+      <a class="fr-badge" href="https://www.google.com/maps/place/DanielH-+Fot%C3%B3grafo+y+videografo+-+estudio+en+%C3%B1u%C3%B1oa/@-33.4734951,-70.6110988,17z/data=!3m1!4b1!4m6!3m5!1s0x9662cfbd3db638c5:0xb38ce22b80c5d8f!8m2!3d-33.4734996!4d-70.6085185!16s%2Fg%2F11b7chrfrd?authuser=0&amp;hl=es" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border:1px solid rgba(90,178,105,0.42);border-radius:999px;background:rgba(20,23,22,0.6);backdrop-filter:blur(6px);font-size:11.5px;letter-spacing:0.04em;color:rgba(238,245,239,0.92);white-space:nowrap"><span style="color:#5ab269">★</span> 5.0 en Google · +15 reseñas</a>
+      <a class="fr-badge" href="https://invitalo.cl/p/fotorama-boda" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border:1px solid rgba(90,178,105,0.42);border-radius:999px;background:rgba(20,23,22,0.6);backdrop-filter:blur(6px);font-size:11.5px;letter-spacing:0.04em;color:rgba(238,245,239,0.92);white-space:nowrap"><span style="color: rgb(90, 178, 105);">★</span> 4.9/5.0 en Invitalo · +105 reseñas</a>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border:1px solid rgba(234,241,236,0.16);border-radius:999px;background:rgba(20,23,22,0.6);backdrop-filter:blur(6px);font-size:11.5px;letter-spacing:0.04em;color:rgba(238,245,239,0.92);white-space:nowrap">+900 bodas</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border:1px solid rgba(234,241,236,0.16);border-radius:999px;background:rgba(20,23,22,0.6);backdrop-filter:blur(6px);font-size:11.5px;letter-spacing:0.04em;color:rgba(238,245,239,0.92);white-space:nowrap">+20 años de experiencia</span>
+    </div>
+    </sc-if>
+
+    <a class="fr-main" href="https://wa.me/56985173293" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;padding:20px 22px;border-radius:16px;background:linear-gradient(135deg,#3f9e4f 0%,#256b31 100%);color:#f2f8f2;box-shadow:0 14px 34px rgba(0,0,0,0.55),0 0 26px rgba(90,178,105,0.24),0 0 64px 6px rgba(90,178,105,0.13);transition:transform .25s ease">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.1 22l5.36-1.4a9.8 9.8 0 0 0 4.58 1.16h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.77 9.77 0 0 0 12.04 2Zm0 1.8c2.15 0 4.17.84 5.69 2.36a7.98 7.98 0 0 1 2.36 5.68c0 4.44-3.61 8.05-8.05 8.05a8.06 8.06 0 0 1-4.1-1.12l-.3-.18-3.18.83.85-3.1-.2-.32a7.98 7.98 0 0 1-1.22-4.26c0-4.44 3.61-8.04 8.15-8.04Zm-3.6 4.1c-.17 0-.44.06-.68.32-.23.26-.9.88-.9 2.14s.92 2.48 1.05 2.66c.13.17 1.8 2.76 4.38 3.86.61.26 1.09.42 1.46.54.61.2 1.17.17 1.61.1.49-.07 1.5-.61 1.72-1.21.21-.6.21-1.11.15-1.22-.06-.1-.24-.17-.5-.29-.26-.13-1.5-.74-1.74-.83-.23-.09-.4-.13-.57.13-.17.26-.65.82-.8.99-.15.17-.29.2-.55.07-.26-.13-1.08-.4-2.06-1.27-.76-.68-1.28-1.52-1.43-1.78-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.57-1.39-.79-1.9-.2-.49-.4-.42-.55-.43h-.47Z"></path></svg>
+      <span style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0">
+        <span style="font-size:17px;font-weight:600;letter-spacing:0.01em">Escríbenos por WhatsApp</span>
+        <span style="font-size:12.5px;font-weight:400;color:rgba(233,244,234,0.72)">+56 9 8517 3293 · respuesta el mismo día</span>
+      </span>
+      <span style="font-size:20px;opacity:.5">→</span>
+    </a>
+
+    <section style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:10.5px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(120,196,133,0.92);white-space:nowrap">Bodas y matrimonios</span>
+        <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(90,178,105,0.45),rgba(90,178,105,0))"></span>
+      </div>
+      <a class="fr-btn" href="https://fotorama.cl/boda" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:14px;border:1px solid rgba(234,241,236,0.18);background:rgba(20,23,22,0.66);backdrop-filter:blur(8px);transition:transform .25s ease,background .25s ease,border-color .25s ease;animation-delay:.1s">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#5ab269" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"></path></svg>
+        <span style="display:flex;flex-direction:column;gap:1px;flex:1;min-width:0">
+          <span style="font-size:14.5px;font-weight:500">Sitio web de matrimonios</span>
+          <span style="font-size:12px;color:rgba(234,241,236,0.55)">fotorama.cl/boda</span>
+        </span>
+        <span style="font-size:15px;color:rgba(234,241,236,0.35)">→</span>
+      </a>
+      <a class="fr-btn" href="https://instagram.com/fotorama.boda" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:14px;border:1px solid rgba(234,241,236,0.18);background:rgba(20,23,22,0.66);backdrop-filter:blur(8px);transition:transform .25s ease,background .25s ease,border-color .25s ease;animation-delay:.15s">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#5ab269" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17" cy="7" r="1.1" fill="#5ab269" stroke="none"></circle></svg>
+        <span style="display:flex;flex-direction:column;gap:1px;flex:1;min-width:0">
+          <span style="font-size:14.5px;font-weight:500">Instagram de matrimonios</span>
+          <span style="font-size:12px;color:rgba(234,241,236,0.55)">@fotorama.boda</span>
+        </span>
+        <span style="font-size:15px;color:rgba(234,241,236,0.35)">→</span>
+      </a>
+    </section>
+
+    <section style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:10.5px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(120,196,133,0.92);white-space:nowrap">Fotografía comercial</span>
+        <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(90,178,105,0.45),rgba(90,178,105,0))"></span>
+      </div>
+      <a class="fr-btn" href="https://fotorama.cl/pro" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:14px;border:1px solid rgba(234,241,236,0.18);background:rgba(20,23,22,0.66);backdrop-filter:blur(8px);transition:transform .25s ease,background .25s ease,border-color .25s ease;animation-delay:.2s">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#5ab269" stroke-width="1.5" stroke-linecap="round"><path d="M4 8.5h16v10a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5v-10Z"></path><path d="M8.5 8.5 9.7 5.6a1.5 1.5 0 0 1 1.4-.9h1.8a1.5 1.5 0 0 1 1.4.9l1.2 2.9"></path><circle cx="12" cy="14" r="3.2"></circle></svg>
+        <span style="display:flex;flex-direction:column;gap:1px;flex:1;min-width:0">
+          <span style="font-size:14.5px;font-weight:500">Sitio web comercial y publicitario</span>
+          <span style="font-size:12px;color:rgba(234,241,236,0.55)">fotorama.cl/pro</span>
+        </span>
+        <span style="font-size:15px;color:rgba(234,241,236,0.35)">→</span>
+      </a>
+      <a class="fr-btn" href="https://instagram.com/fotorama.pro" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:14px;border:1px solid rgba(234,241,236,0.18);background:rgba(20,23,22,0.66);backdrop-filter:blur(8px);transition:transform .25s ease,background .25s ease,border-color .25s ease;animation-delay:.25s">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#5ab269" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17" cy="7" r="1.1" fill="#5ab269" stroke="none"></circle></svg>
+        <span style="display:flex;flex-direction:column;gap:1px;flex:1;min-width:0">
+          <span style="font-size:14.5px;font-weight:500">Instagram comercial y publicidad</span>
+          <span style="font-size:12px;color:rgba(234,241,236,0.55)">@fotorama.pro</span>
+        </span>
+        <span style="font-size:15px;color:rgba(234,241,236,0.35)">→</span>
+      </a>
+    </section>
+
+    <section style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:10.5px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(120,196,133,0.92);white-space:nowrap">Daniel H</span>
+        <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(90,178,105,0.45),rgba(90,178,105,0))"></span>
+      </div>
+      <a class="fr-btn" href="https://instagram.com/danielhfoto" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:14px;border:1px solid rgba(234,241,236,0.18);background:rgba(20,23,22,0.66);backdrop-filter:blur(8px);transition:transform .25s ease,background .25s ease,border-color .25s ease;animation-delay:.3s">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#5ab269" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17" cy="7" r="1.1" fill="#5ab269" stroke="none"></circle></svg>
+        <span style="display:flex;flex-direction:column;gap:1px;flex:1;min-width:0">
+          <span style="font-size:14.5px;font-weight:500">Instagram de Daniel H</span>
+          <span style="font-size:12px;color:rgba(234,241,236,0.55)">@danielhfoto</span>
+        </span>
+        <span style="font-size:15px;color:rgba(234,241,236,0.35)">→</span>
+      </a>
+      <a class="fr-btn" href="https://fotorama.cl/danielh" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:14px;border:1px solid rgba(234,241,236,0.18);background:rgba(20,23,22,0.66);backdrop-filter:blur(8px);transition:transform .25s ease,background .25s ease,border-color .25s ease;animation-delay:.35s">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#5ab269" stroke-width="1.5" stroke-linecap="round"><path d="M5 4.5h14v15l-7-4-7 4v-15Z"></path></svg>
+        <span style="display:flex;flex-direction:column;gap:1px;flex:1;min-width:0">
+          <span style="font-size:14.5px;font-weight:500">Trabajo autoral de Daniel H</span>
+          <span style="font-size:12px;color:rgba(234,241,236,0.55)">Portafolio personal</span>
+        </span>
+        <span style="font-size:15px;color:rgba(234,241,236,0.35)">→</span>
+      </a>
+    </section>
+
+    <section style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:10.5px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(120,196,133,0.92);white-space:nowrap">Estudio y ubicación</span>
+        <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(90,178,105,0.45),rgba(90,178,105,0))"></span>
+      </div>
+      <a class="fr-btn" href="https://maps.google.com/?q=Los+Avellanos+2263,+%C3%91u%C3%B1oa,+Santiago" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:14px;border:1px solid rgba(90,178,105,0.45);background:rgba(90,178,105,0.12);backdrop-filter:blur(8px);transition:transform .25s ease,background .25s ease,border-color .25s ease;animation-delay:.4s">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#5ab269" stroke-width="1.5" stroke-linecap="round"><path d="M12 21s6.5-6.1 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 14.9 12 21 12 21Z"></path><circle cx="12" cy="10.5" r="2.4"></circle></svg>
+        <span style="display:flex;flex-direction:column;gap:1px;flex:1;min-width:0">
+          <span style="font-size:14.5px;font-weight:500">Cómo llegar al estudio</span>
+          <span style="font-size:12px;color:rgba(234,241,236,0.6)">Los Avellanos 2263, Ñuñoa</span>
+        </span>
+        <span style="font-size:15px;color:rgba(234,241,236,0.35)">→</span>
+      </a>
+      <a class="fr-btn" href="https://web.facebook.com/fotorama.boda?_rdc=1&amp;_rdr#" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:14px;border:1px solid rgba(234,241,236,0.18);background:rgba(20,23,22,0.66);backdrop-filter:blur(8px);transition:transform .25s ease,background .25s ease,border-color .25s ease;animation-delay:.45s">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="#5ab269"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.63A22 22 0 0 0 14.3 3.5c-2.4 0-4.05 1.47-4.05 4.16V9.9H7.5V13h2.75v8h3.25Z"></path></svg>
+        <span style="display:flex;flex-direction:column;gap:1px;flex:1;min-width:0">
+          <span style="font-size:14.5px;font-weight:500">Facebook</span>
+          <span style="font-size:12px;color:rgba(234,241,236,0.55)">Fotorama Boda, Ñuñoa</span>
+        </span>
+        <span style="font-size:15px;color:rgba(234,241,236,0.35)">→</span>
+      </a>
+    </section>
+
+    <footer style="display:flex;flex-direction:column;align-items:center;gap:20px;padding-top:26px">
+      <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:14px">
+        <div style="width:190px;height:190px;border-radius:50%;padding:4px;background:linear-gradient(160deg,rgba(90,178,105,0.75),rgba(90,178,105,0.12));box-shadow:0 20px 48px rgba(0,0,0,0.65),0 0 26px rgba(90,178,105,0.20),0 0 64px rgba(90,178,105,0.10)">
+          <img src="./retrato-cliente.jpg" alt="Daniel Hernández" style="width:100%;height:100%;display:block;border-radius:50%;object-fit:cover;object-position:50% 32%">
+        </div>
+        <figcaption style="display:flex;flex-direction:column;gap:5px;text-align:center">
+          <span style="font-size:16px;font-weight:500;letter-spacing:0.03em">Daniel Hernández</span>
+          <span style="font-size:12.5px;font-weight:300;color:rgba(234,241,236,0.6)">Fotógrafo y director · Fotorama, Ñuñoa</span>
+        </figcaption>
+      </figure>
+      <div style="display:flex;gap:12px;padding-top:6px">
+        <a class="fr-icon" href="https://instagram.com/fotorama.boda" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(234,241,236,0.18);background:rgba(20,23,22,0.66)">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="rgba(234,241,236,0.8)" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17" cy="7" r="1.1" fill="rgba(234,241,236,0.8)" stroke="none"></circle></svg>
+        </a>
+        <a class="fr-icon" href="https://facebook.com/fotoramapro" target="_blank" rel="noopener" aria-label="Facebook" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(234,241,236,0.18);background:rgba(20,23,22,0.66)">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="rgba(234,241,236,0.8)"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.63A22 22 0 0 0 14.3 3.5c-2.4 0-4.05 1.47-4.05 4.16V9.9H7.5V13h2.75v8h3.25Z"></path></svg>
+        </a>
+        <a class="fr-icon" href="https://wa.me/56985173293" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(234,241,236,0.18);background:rgba(20,23,22,0.66)">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="rgba(234,241,236,0.8)"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.1 22l5.36-1.4a9.8 9.8 0 0 0 4.58 1.16h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.77 9.77 0 0 0 12.04 2Zm0 1.8c2.15 0 4.17.84 5.69 2.36a7.98 7.98 0 0 1 2.36 5.68c0 4.44-3.61 8.05-8.05 8.05a8.06 8.06 0 0 1-4.1-1.12l-.3-.18-3.18.83.85-3.1-.2-.32a7.98 7.98 0 0 1-1.22-4.26c0-4.44 3.61-8.04 8.15-8.04Zm-3.6 4.1c-.17 0-.44.06-.68.32-.23.26-.9.88-.9 2.14s.92 2.48 1.05 2.66c.13.17 1.8 2.76 4.38 3.86.61.26 1.09.42 1.46.54.61.2 1.17.17 1.61.1.49-.07 1.5-.61 1.72-1.21.21-.6.21-1.11.15-1.22-.06-.1-.24-.17-.5-.29-.26-.13-1.5-.74-1.74-.83-.23-.09-.4-.13-.57.13-.17.26-.65.82-.8.99-.15.17-.29.2-.55.07-.26-.13-1.08-.4-2.06-1.27-.76-.68-1.28-1.52-1.43-1.78-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.57-1.39-.79-1.9-.2-.49-.4-.42-.55-.43h-.47Z"></path></svg>
+        </a>
+      </div>
+      <p style="margin:0;font-size:11.5px;font-weight:300;letter-spacing:0.06em;color:rgba(234,241,236,0.45);text-align:center">© Fotorama — Daniel Hernández Fotografía</p>
+    </footer>
+  </main>
+
+  <sc-if value="{{ showFloatingWhatsapp }}" hint-placeholder-val="{{ true }}">
+  <a class="fr-fab" href="https://wa.me/56985173293" target="_blank" rel="noopener" aria-label="WhatsApp" style="position:fixed;right:18px;bottom:22px;z-index:5;display:flex;align-items:center;gap:9px;padding:13px 18px 13px 15px;border-radius:999px;background:linear-gradient(135deg,#3f9e4f,#256b31);color:#f2f8f2;box-shadow:0 12px 30px rgba(0,0,0,0.6),0 0 20px rgba(52,140,66,0.35);font-size:14px;font-weight:600">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.1 22l5.36-1.4a9.8 9.8 0 0 0 4.58 1.16h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.77 9.77 0 0 0 12.04 2Zm0 1.8c2.15 0 4.17.84 5.69 2.36a7.98 7.98 0 0 1 2.36 5.68c0 4.44-3.61 8.05-8.05 8.05a8.06 8.06 0 0 1-4.1-1.12l-.3-.18-3.18.83.85-3.1-.2-.32a7.98 7.98 0 0 1-1.22-4.26c0-4.44 3.61-8.04 8.15-8.04Zm-3.6 4.1c-.17 0-.44.06-.68.32-.23.26-.9.88-.9 2.14s.92 2.48 1.05 2.66c.13.17 1.8 2.76 4.38 3.86.61.26 1.09.42 1.46.54.61.2 1.17.17 1.61.1.49-.07 1.5-.61 1.72-1.21.21-.6.21-1.11.15-1.22-.06-.1-.24-.17-.5-.29-.26-.13-1.5-.74-1.74-.83-.23-.09-.4-.13-.57.13-.17.26-.65.82-.8.99-.15.17-.29.2-.55.07-.26-.13-1.08-.4-2.06-1.27-.76-.68-1.28-1.52-1.43-1.78-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.57-1.39-.79-1.9-.2-.49-.4-.42-.55-.43h-.47Z"></path></svg>
+    <span>WhatsApp</span>
+  </a>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:430,&quot;height&quot;:932},&quot;showTrustBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showFloatingWhatsapp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showTrustBar: this.props.showTrustBar ?? true,
+      showFloatingWhatsapp: this.props.showFloatingWhatsapp ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>
